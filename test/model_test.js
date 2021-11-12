@@ -27,7 +27,8 @@ suite('Usuario', () => {
 });
 suite('Tarjeta', () => {
     const aTarjeta = new Tarjeta();
-    const aGastoTarjeta = new GastoTarjeta(100,0)
+    const aGastoTarjeta = new GastoTarjeta(100,1)
+    const bGastoTarjeta = new GastoTarjeta(50,1)
 
     test('Una tarjeta nueva no tiene movimientos', () => {
         assert.that(aTarjeta.movimientos.length).isEqualTo(0);
@@ -36,6 +37,12 @@ suite('Tarjeta', () => {
     test('Una tarjeta tiene movimientos', () => {
         aTarjeta.agregarMovimiento(aGastoTarjeta)
         assert.that(aTarjeta.movimientos.length).isEqualTo(1);
+    });
+    test('Una tarjeta tiene monto a pagar total', () => {
+        aTarjeta.agregarMovimiento(aGastoTarjeta)
+        aTarjeta.agregarMovimiento(bGastoTarjeta)
+
+        assert.that(aTarjeta.movimientos.length).isEqualTo(150);
     });
 });
 //npx testy model_test.js
